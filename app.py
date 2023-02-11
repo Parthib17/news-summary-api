@@ -56,7 +56,7 @@ app = Flask(__name__)
 # def home():
 #     return "hello world"
 
-@app.route('/analyze',methods=['POST'])
+@app.route('/analyze',methods=['GET'])
 def analyze():
     if request.method == 'POST':
         rawtext = request.form.get('text')
