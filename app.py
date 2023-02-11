@@ -1,5 +1,4 @@
 from flask import Flask,request,jsonify
-from text_summary_model import summarizer
 
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
