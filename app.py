@@ -6,8 +6,16 @@ from string import punctuation
 from heapq import nlargest
 
 
-def summarizer(rawtext):
+app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return "hello world"
+
+@app.route('/analyze',methods=['GET'])
+def analyze():
+
+    rawtext = request.form.get('text')
     stopwords=list(STOP_WORDS)   #stop words
     #print(stopwords)
     nlp = spacy.load('en_core_web_sm')      #small module of spacy
@@ -48,23 +56,9 @@ def summarizer(rawtext):
     summary = nlargest(select_len, sent_scores, key=sent_scores.get)
     final_summary = [word.text for word in summary]
     summary =' '.join(final_summary)
-    return summary
+    #result= {'text':text}
 
-app = Flask(__name__)
-
-# @app.route('/')
-# def home():
-#     return "hello world"
-
-@app.route('/analyze',methods=['POST'])
-def analyze():
-
-    # rawtext = request.form.get('text')
-    # # result= {'text':text}
-    # result = summarizer(rawtext)
-
-    # return jsonify({'Summary':result})
-    return "hello"
+    return jsonify({'Summary':summary})
 
     
 if __name__ == '__main__':
