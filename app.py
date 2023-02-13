@@ -56,14 +56,15 @@ app = Flask(__name__)
 # def home():
 #     return "hello world"
 
-@app.route('/',methods=['POST'])
-def home():
+@app.route('/analyze',methods=['POST'])
+def analyze():
 
-    rawtext = request.form.get('text')
-    # result= {'text':text}
-    result = summarizer(rawtext)
+    # rawtext = request.form.get('text')
+    # # result= {'text':text}
+    # result = summarizer(rawtext)
 
-    return jsonify({'Summary':result})
+    # return jsonify({'Summary':result})
+    return "hello"
 
     
 if __name__ == '__main__':
